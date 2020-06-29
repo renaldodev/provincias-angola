@@ -1,1 +1,1 @@
-web: mp2 start /dist/app.js
+web: node ./dist/app.js
