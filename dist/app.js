@@ -62,6 +62,7 @@ app.use((req, res, next) => {
     });
     next();
 });
-server.listen(process.env.PORT || 3000, () => {
-    console.log("server is running");
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+    console.log("server is running on port ", port);
 });
