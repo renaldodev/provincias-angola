@@ -33,9 +33,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const http_1 = __importDefault(require("http"));
 const express_1 = __importDefault(require("express"));
 const service = __importStar(require("./service/cheerioData"));
 const app = express_1.default();
+const server = http_1.default.createServer(app);
 app.get("/api/provinces", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res.json(yield service.getProvincias());
 }));
@@ -60,6 +62,6 @@ app.use((req, res, next) => {
     });
     next();
 });
-app.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 3000, () => {
     console.log("server is running");
 });

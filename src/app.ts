@@ -1,10 +1,11 @@
 import dotenv from "dotenv"
 dotenv.config();
+import http from "http";
 import express from "express";
 import * as service from "./service/cheerioData"
 
 const app = express();
-
+const server=http.createServer(app);
 app.get("/api/provinces", async (req, res) => {
    return res.json(await service.getProvincias())
 });
@@ -36,7 +37,8 @@ app.use((req,res,next)=>{
    next();
 })
 
-app.listen(process.env.PORT || 3000, () =>{
+
+server.listen(process.env.PORT || 3000, () =>{
     console.log("server is running");
     
 });
